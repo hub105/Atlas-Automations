@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Atlas Automations - We build AI Chatbots for any business. Hotel, Restaurant, School, E-commerce, Real Estate and custom chatbots powered by AI.">
+    <meta name="keywords" content="Atlas Automations, AI Chatbot, business chatbot, hotel chatbot, restaurant chatbot, school chatbot, real estate chatbot, ecommerce chatbot, custom chatbot Nigeria">
+    <meta name="author" content="Atlas Automations">
+    <title>Atlas Automations | AI Chatbots for Businesses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2563eb;
+            --blue-light: #60a5fa;
+            --blue-glow: rgba(37,99,235,0.3);
+            --silver: #c0c8d8;
+            --silver-light: #e8ecf4;
+            --dark: #050508;
+            --dark2: #0c0c14;
+            --dark3: #12121e;
+            --dark4: #1a1a2e;
+            --text: #dde4f0;
+            --muted: #6b7280;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Exo 2', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(5,5,8,0.95);
+            backdrop-filter: blur(16px);
+            padding: 14px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 999;
+            border-bottom: 1px solid rgba(37,99,235,0.2);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { width: 40px; height: 40px; object-fit: contain; }
+        .nav-logo span { font-family: 'Orbitron', monospace; font-size: 13px; font-weight: 700; color: var(--silver-light); letter-spacing: 1px; }
+        .nav-logo span em { color: var(--blue-light); font-style: normal; }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+        .nav-links a { color: var(--silver); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--blue-light); }
+        .nav-cta { background: var(--blue) !important; color: white !important; padding: 9px 22px; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s !important; }
+        .nav-cta:hover { background: #1d4ed8 !important; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .hamburger span { width: 24px; height: 2px; background: var(--silver); border-radius: 2px; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 120px 20px 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,235,0.13) 0%, transparent 60%),
+                        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(37,99,235,0.07) 0%, transparent 50%);
+        }
+        .grid-lines {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(37,99,235,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(37,99,235,0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-logo { width: 130px; height: 130px; object-fit: contain; margin-bottom: 24px; position: relative; z-index: 1; animation: float 4s ease-in-out infinite, fadeUp 0.6s ease both; }
+        .hero-tag { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 16px; position: relative; z-index: 1; animation: fadeUp 0.6s ease 0.1s both; }
+        .hero h1 { font-family: 'Orbitron', monospace; font-size: 50px; font-weight: 900; color: var(--silver-light); letter-spacing: 2px; position: relative; z-index: 1; line-height: 1.15; animation: fadeUp 0.6s ease 0.2s both; }
+        .hero h1 span { color: var(--blue-light); }
+        .hero-desc { font-size: 16px; color: var(--muted); max-width: 560px; margin: 18px auto 36px; position: relative; z-index: 1; line-height: 1.75; animation: fadeUp 0.6s ease 0.3s both; }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; animation: fadeUp 0.6s ease 0.4s both; }
+        .btn-primary { background: var(--blue); color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.2s; box-shadow: 0 0 24px rgba(37,99,235,0.35); }
+        .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+        .btn-outline { border: 1.5px solid rgba(37,99,235,0.5); color: var(--blue-light); padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; transition: all 0.2s; }
+        .btn-outline:hover { border-color: var(--blue-light); background: rgba(37,99,235,0.1); transform: translateY(-2px); }
+        .hero-stats { display: flex; gap: 48px; justify-content: center; margin-top: 64px; position: relative; z-index: 1; flex-wrap: wrap; animation: fadeUp 0.6s ease 0.5s both; }
+        .stat { text-align: center; }
+        .stat-num { font-family: 'Orbitron', monospace; font-size: 28px; font-weight: 900; color: var(--blue-light); }
+        .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 1px; margin-top: 4px; }
+
+        /* SECTIONS */
+        section { padding: 90px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-label { text-align: center; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--blue-light); margin-bottom: 12px; }
+        .section-title { font-family: 'Orbitron', monospace; font-size: 26px; font-weight: 700; text-align: center; color: var(--silver-light); margin-bottom: 10px; }
+        .section-sub { text-align: center; color: var(--muted); font-size: 15px; margin-bottom: 56px; max-width: 540px; margin-left: auto; margin-right: auto; }
+        .divider { width: 60px; height: 2px; background: var(--blue); margin: 0 auto 14px; border-radius: 2px; }
+
+        /* SERVICES */
+        #services { background: var(--dark2); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+        .service-card {
+            background: var(--dark3); border: 1px solid rgba(37,99,235,0.12);
+            border-radius: 16px; padding: 30px; transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .service-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue), transparent); opacity: 0; transition: opacity 0.3s; }
+        .service-card:hover { border-color: rgba(37,99,235,0.4); transform: translateY(-5px); box-shadow: 0 16px 48px rgba(37,99,235,0.12); }
+        .service-card:hover::after { opacity: 1; }
+        .service-icon { font-size: 38px; margin-bottom: 14px; }
+        .service-card h3 { font-family: 'Orbitron', monospace; font-size: 15px; color: var(--silver-light); margin-bottom: 10px; letter-spacing: 0.5px; }
+        .service-card p { color: var(--muted); font-size: 13.5px; line-height: 1.7; margin-bottom: 20px; }
+        .demo-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.35); color: var(--blue-light); padding: 8px 18px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+        .demo-btn:hover { background: var(--blue); color: white; border-color: var(--blue); }
+
+        /* ANY CHATBOT BANNER */
+        .any-chatbot {
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(37,99,235,0.05));
+            border: 1px solid rgba(37,99,235,0.3);
+            border-radius: 16px; padding: 40px; text-align: center; margin-top: 28px;
+        }
+        .any-chatbot h3 { font-family: 'Orbitron', monospace; font-size: 20px; color: var(--silver-light); margin-bottom: 10px; }
+        .any-chatbot p { color: var(--muted); font-size: 15px; max-width: 540px; margin: 0 auto 22px; line-height: 1.7; }
+
+        /* HOW IT WORKS */
+        #how { background: var(--dark); }
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+        .step { text-align: center; padding: 20px; }
+        .step-num { width: 58px; height: 58px; border-radius: 50%; background: rgba(37,99,235,0.12); border: 2px solid rgba(37,99,235,0.4); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 700; color: var(--blue-light); margin: 0 auto 18px; }
+        .step h3 { font-size: 16px; font-weight: 600; color: var(--silver-light); margin-bottom: 8px; }
+        .step p { color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+        /* PRICING */
+        #pricing { background: var(--dark2); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 920px; margin: 0 auto; }
+        .price-card { background: var(--dark3); border: 1px solid rgba(37,99,235,0.12); border-radius: 16px; padding: 36px 30px; text-align: center; transition: all 0.3s; position: relative; }
+        .price-card.popular { border-color: var(--blue); box-shadow: 0 0 48px rgba(37,99,235,0.2); }
+        .popular-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--blue); color: white; padding: 4px 18px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
+        .price-card:hover { transform: translateY(-5px); }
+        .price-name { font-family: 'Orbitron', monospace; font-size: 13px; color: var(--blue-light); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+        .price-amount { font-family: 'Orbitron', monospace; font-size: 40px; font-weight: 900; color: var(--silver-light); }
+        .price-amount sup { font-size: 18px; vertical-align: top; margin-top: 8px; display: inline-block; }
+        .price-period { color: var(--muted); font-size: 13px; margin: 6px 0 26px; }
+        .price-features { list-style: none; margin-bottom: 28px; text-align: left; }
+        .price-features li { padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--silver); font-size: 13.5px; display: flex; align-items: center; gap: 9px; }
+        .price-features li::before { content: '✦'; color: var(--blue-light); font-size: 9px; flex-shrink: 0; }
+        .price-btn { display: block; padding: 13px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; transition: all 0.2s; letter-spacing: 0.5px; }
+        .popular .price-btn { background: var(--blue); color: white; box-shadow: 0 0 20px rgba(37,99,235,0.35); }
+        .popular .price-btn:hover { background: #1d4ed8; }
+        .price-card:not(.popular) .price-btn { background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.35); color: var(--blue-light); }
+        .price-card:not(.popular) .price-btn:hover { background: var(--blue); color: white; }
+
+        /* WHY US */
+        #why { background: var(--dark); }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+        .why-card { background: var(--dark3); border: 1px solid rgba(37,99,235,0.1); border-radius: 14px; padding: 28px; text-align: center; transition: all 0.3s; }
+        .why-card:hover { border-color: rgba(37,99,235,0.35); transform: translateY(-3px); }
+        .why-icon { font-size: 32px; margin-bottom: 12px; }
+        .why-card h3 { font-size: 15px; font-weight: 600; color: var(--silver-light); margin-bottom: 8px; }
+        .why-card p { color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+
+        /* TESTIMONIALS */
+        #testimonials { background: var(--dark2); }
+        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+        .testi-card { background: var(--dark3); border: 1px solid rgba(37,99,235,0.1); border-radius: 14px; padding: 28px; }
+        .testi-stars { color: #f59e0b; font-size: 14px; margin-bottom: 12px; }
+        .testi-card p { color: var(--silver); font-size: 14px; line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+        .testi-author { display: flex; align-items: center; gap: 12px; }
+        .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(37,99,235,0.2); border: 2px solid rgba(37,99,235,0.3); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .testi-name { font-size: 14px; font-weight: 600; color: var(--silver-light); }
+        .testi-role { font-size: 12px; color: var(--muted); }
+
+        /* CTA */
+        #contact {
+            background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(37,99,235,0.1) 0%, transparent 70%), var(--dark);
+            text-align: center;
+        }
+        #contact h2 { font-family: 'Orbitron', monospace; font-size: 30px; font-weight: 900; color: var(--silver-light); margin-bottom: 14px; }
+        #contact p { color: var(--muted); font-size: 16px; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+        .whatsapp-btn { display: inline-flex; align-items: center; gap: 12px; background: #25d366; color: white; padding: 16px 40px; border-radius: 50px; text-decoration: none; font-size: 17px; font-weight: 700; transition: all 0.2s; box-shadow: 0 0 30px rgba(37,211,102,0.3); }
+        .whatsapp-btn:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 0 44px rgba(37,211,102,0.45); }
+        .whatsapp-icon { font-size: 22px; }
+
+        /* FOOTER */
+        footer { background: var(--dark2); border-top: 1px solid rgba(37,99,235,0.15); padding: 32px 20px; text-align: center; }
+        .footer-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; }
+        .footer-logo img { width: 30px; height: 30px; object-fit: contain; }
+        .footer-logo span { font-family: 'Orbitron', monospace; font-size: 12px; color: var(--silver); letter-spacing: 1px; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin: 14px 0; flex-wrap: wrap; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--blue-light); }
+        footer p { color: var(--muted); font-size: 12px; }
+        footer p span { color: var(--blue-light); }
+
+        /* ANIMATIONS */
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero h1 { font-size: 30px; }
+            .hero-logo { width: 100px; height: 100px; }
+            .hero-stats { gap: 28px; }
+            .section-title { font-size: 20px; }
+            #contact h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#" class="nav-logo">
+        <img src="logo.png" alt="Atlas Automations">
+        <span>ATLAS <em>AUTOMATIONS</em></span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact" class="nav-cta">Get Started</a></li>
+    </ul>
+    <div class="hamburger" onclick="this.classList.toggle('open')">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="grid-lines"></div>
+    <img src="logo.png" alt="Atlas Automations" class="hero-logo">
+    <p class="hero-tag">— Intelligent Business Solutions —</p>
+    <h1>AI CHATBOTS FOR<br><span>YOUR BUSINESS</span></h1>
+    <p class="hero-desc">We build powerful AI chatbots that automate customer support, drive sales, and keep your business running 24/7. From hotels to schools — if you have customers, we have a solution.</p>
+    <div class="hero-btns">
+        <a href="#services" class="btn-primary">Explore Our Chatbots</a>
+        <a href="https://wa.me/12390591444" target="_blank" class="btn-outline">💬 WhatsApp Us</a>
+    </div>
+    <div class="hero-stats">
+        <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Industries Served</div></div>
+        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Always Online</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Custom Built</div></div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <div class="container">
+        <p class="section-label">What We Build</p>
+        <div class="divider"></div>
+        <h2 class="section-title">Our AI Chatbots</h2>
+        <p class="section-sub">Industry-specific chatbots built and deployed fast — with live demos you can try right now</p>
+        <div class="services-grid">
+
+            <div class="service-card">
+                <div class="service-icon">🏨</div>
+                <h3>Hotel Chatbot</h3>
+                <p>Handle room bookings, spa reservations, airport transfers, dining inquiries and all hotel services automatically — zero wait time, 24/7.</p>
+                <a href="https://hotel-chatbot-1-2gye.onrender.com/" target="_blank" class="demo-btn">▶ Try Live Demo</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🍽️</div>
+                <h3>Restaurant Chatbot</h3>
+                <p>Take table reservations, share menus, handle orders and answer customer questions instantly — your AI host never takes a break.</p>
+                <a href="https://restaurant-chatbot-2fcm.onrender.com/" target="_blank" class="demo-btn">▶ Try Live Demo</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>School Chatbot</h3>
+                <p>Answer admission questions, share fee schedules, timetables and exam info for students and parents — round the clock.</p>
+                <a href="https://school-chatbot-nqvf.onrender.com/" target="_blank" class="demo-btn">▶ Try Live Demo</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛍️</div>
+                <h3>E-Commerce Chatbot</h3>
+                <p>Help shoppers find products, track orders, process returns and discover deals — boosting your sales while you sleep.</p>
+                <a href="https://e-commerce-chatbot-j82l.onrender.com/" target="_blank" class="demo-btn">▶ Try Live Demo</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Real Estate Chatbot</h3>
+                <p>Qualify leads, showcase property listings, schedule viewings and answer buyer questions automatically — close deals faster.</p>
+                <a href="https://real-estate-chatbot-g7za.onrender.com/" target="_blank" class="demo-btn">▶ Try Live Demo</a>
+            </div>
+
+        </div>
+
+        <!-- ANY CHATBOT -->
+        <div class="any-chatbot">
+            <h3>🤖 We Build ANY Chatbot</h3>
+            <p>Don't see your industry? No problem. We build custom AI chatbots for any kind of business — healthcare, logistics, banking, events, fitness and more. If you have customers, we can automate it.</p>
+            <a href="https://wa.me/12390591444" target="_blank" class="btn-primary">Tell Us What You Need</a>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+    <div class="container">
+        <p class="section-label">The Process</p>
+        <div class="divider"></div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-sub">From first message to fully working chatbot — fast, simple and stress-free</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h3>Contact Us</h3>
+                <p>Reach out on WhatsApp and tell us about your business. We'll ask a few questions to understand exactly what you need.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h3>We Build It</h3>
+                <p>Our team builds your custom AI chatbot — trained on your business information, branded with your identity.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h3>You Go Live</h3>
+                <p>We deploy your chatbot and hand it over. Your business starts automating customer conversations immediately.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <h3>We Support You</h3>
+                <p>We don't disappear after launch. We're available to update, improve and support your chatbot as your business grows.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+    <div class="container">
+        <p class="section-label">Plans & Pricing</p>
+        <div class="divider"></div>
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-sub">No hidden fees. Pick the plan that fits your business and get started today.</p>
+        <div class="pricing-grid">
+
+            <div class="price-card">
+                <div class="price-name">Basic</div>
+                <div class="price-amount"><sup>₦</sup>50,000</div>
+                <div class="price-period">One-time setup</div>
+                <ul class="price-features">
+                    <li>1 AI Chatbot</li>
+                    <li>Up to 5 custom topics</li>
+                    <li>WhatsApp or Web deployment</li>
+                    <li>Basic branding</li>
+                    <li>1 week support</li>
+                </ul>
+                <a href="https://wa.me/12390591444" target="_blank" class="price-btn">Get Started</a>
+            </div>
+
+            <div class="price-card popular">
+                <div class="popular-badge">⭐ Most Popular</div>
+                <div class="price-name">Standard</div>
+                <div class="price-amount"><sup>₦</sup>80,000</div>
+                <div class="price-period">One-time setup</div>
+                <ul class="price-features">
+                    <li>1 AI Chatbot</li>
+                    <li>Up to 15 custom topics</li>
+                    <li>Web + WhatsApp deployment</li>
+                    <li>Full branding & custom design</li>
+                    <li>Quick reply buttons</li>
+                    <li>1 month support</li>
+                </ul>
+                <a href="https://wa.me/12390591444" target="_blank" class="price-btn">Get Started</a>
+            </div>
+
+            <div class="price-card">
+                <div class="price-name">Premium</div>
+                <div class="price-amount"><sup>₦</sup>150,000</div>
+                <div class="price-period">One-time setup</div>
+                <ul class="price-features">
+                    <li>1 AI Chatbot</li>
+                    <li>Unlimited custom topics</li>
+                    <li>Multi-platform deployment</li>
+                    <li>Premium branding & UI</li>
+                    <li>Advanced AI responses</li>
+                    <li>Lead capture integration</li>
+                    <li>3 months priority support</li>
+                </ul>
+                <a href="https://wa.me/12390591444" target="_blank" class="price-btn">Get Started</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+    <div class="container">
+        <p class="section-label">Why Atlas</p>
+        <div class="divider"></div>
+        <h2 class="section-title">Why Choose Us</h2>
+        <p class="section-sub">We don't just build chatbots — we build tools that actually grow your business</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3>Fast Delivery</h3>
+                <p>Your chatbot is built and deployed quickly so you start automating your business without long delays.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🎯</div>
+                <h3>100% Custom</h3>
+                <p>Every chatbot is built specifically for your business — not a generic template. Your brand, your information.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🌙</div>
+                <h3>24/7 Operation</h3>
+                <p>Your chatbot never sleeps, never takes a day off. It handles customers while you focus on running your business.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💰</div>
+                <h3>Affordable Pricing</h3>
+                <p>Professional AI automation at prices that make sense for Nigerian businesses — no dollar pricing, no surprises.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="container">
+        <p class="section-label">Client Feedback</p>
+        <div class="divider"></div>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-sub">Businesses already winning with Atlas Automations</p>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p>"The hotel chatbot Atlas built for us handles over 80% of our booking inquiries automatically. Our staff now focus on guests, not answering the same questions repeatedly."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">👨‍💼</div>
+                    <div>
+                        <div class="testi-name">Emeka Okafor</div>
+                        <div class="testi-role">Hotel Manager, Lagos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p>"We got our school chatbot in days. Parents can now get answers about fees and admissions at midnight without calling anyone. It's been a game changer for us."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">👩‍🏫</div>
+                    <div>
+                        <div class="testi-name">Mrs. Adaeze Nwosu</div>
+                        <div class="testi-role">School Principal, Abuja</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="testi-stars">★★★★★</div>
+                <p>"Our e-commerce chatbot answers product questions and tracks orders automatically. Customer complaints dropped and sales went up. Atlas Automations delivered beyond expectations."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">👨‍💻</div>
+                    <div>
+                        <div class="testi-name">Tunde Fashola</div>
+                        <div class="testi-role">Online Store Owner, Ibadan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section id="contact">
+    <div class="container">
+        <p class="section-label">Get In Touch</p>
+        <div class="divider"></div>
+        <h2>Ready to Automate<br>Your Business?</h2>
+        <p>Send us a message on WhatsApp right now. Tell us about your business and we'll get your AI chatbot built and running fast.</p>
+        <a href="https://wa.me/12390591444" target="_blank" class="whatsapp-btn">
+            <span class="whatsapp-icon">💬</span> Chat With Us on WhatsApp
+        </a>
+        <br><br>
+        <p style="color: var(--muted); font-size: 13px;">We typically respond within minutes • Available Mon – Sat</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">
+        <img src="logo.png" alt="Atlas Automations">
+        <span>ATLAS AUTOMATIONS</span>
+    </div>
+    <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#why">Why Us</a>
+        <a href="https://wa.me/12390591444" target="_blank">Contact</a>
+    </div>
+    <p>© 2025 <span>Atlas Automations</span>. All rights reserved. Powered by AI.</p>
+</footer>
+
+</body>
+  </html>
